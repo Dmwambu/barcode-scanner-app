@@ -1,0 +1,277 @@
+/*
+ * Patent Pending: Barcode Scanner with Intelligent Product Recognition
+ * © 2026 Dmwambu. All rights reserved.
+ * Unauthorized use and/or duplication of this material without 
+ * express and written permission is strictly prohibited.
+ */
+
+.scanner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #001a4d 0%, #003399 100%);
+}
+
+.scanner-card {
+  background: white;
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  width: 100%;
+  border-top: 5px solid #FFD700;
+}
+
+.scanner-header {
+  text-align: center;
+  margin-bottom: 35px;
+  border-bottom: 2px solid #FFD700;
+  padding-bottom: 20px;
+}
+
+.kengen-logo {
+  font-size: 48px;
+  margin-bottom: 15px;
+  color: #FFD700;
+}
+
+.scanner-card h2 {
+  color: #001a4d;
+  margin: 0 0 10px 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.tagline {
+  color: #003399;
+  margin: 8px 0 0 0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.upload-section {
+  margin-bottom: 20px;
+}
+
+.upload-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #FFD700 0%, #FFC700 100%);
+  color: #001a4d;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.upload-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+}
+
+.upload-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.divider {
+  text-align: center;
+  margin: 25px 0;
+  color: #999;
+  font-weight: bold;
+  font-size: 14px;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: #ddd;
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+.manual-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.barcode-input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s;
+  font-family: 'Courier New', monospace;
+}
+
+.barcode-input:focus {
+  outline: none;
+  border-color: #003399;
+  box-shadow: 0 0 0 3px rgba(0, 51, 153, 0.1);
+}
+
+.search-btn {
+  padding: 12px 30px;
+  background: linear-gradient(135deg, #003399 0%, #001a4d 100%);
+  color: #FFD700;
+  border: 2px solid #003399;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.search-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 51, 153, 0.4);
+  background: linear-gradient(135deg, #001a4d 0%, #000d26 100%);
+}
+
+.search-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error-message {
+  margin-top: 15px;
+  padding: 15px;
+  background: #ffebee;
+  color: #c62828;
+  border-radius: 8px;
+  text-align: center;
+  border-left: 4px solid #c62828;
+  font-weight: 500;
+}
+
+.product-result {
+  margin-top: 30px;
+  padding: 25px;
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+  border-radius: 12px;
+  border-left: 5px solid #FFD700;
+  border-top: 2px solid #003399;
+}
+
+.result-header {
+  background: linear-gradient(135deg, #FFD700 0%, #FFC700 100%);
+  padding: 15px;
+  border-radius: 8px;
+  margin: -25px -25px 20px -25px;
+  text-align: center;
+}
+
+.result-header h3 {
+  color: #001a4d;
+  margin: 0;
+  font-size: 20px;
+}
+
+.product-img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin: 15px 0;
+  background: white;
+  padding: 10px;
+  border: 2px solid #FFD700;
+}
+
+.product-details {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.product-details h4 {
+  color: #001a4d;
+  margin: 0 0 15px 0;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-item .label {
+  color: #003399;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.detail-item .value {
+  color: #555;
+  text-align: right;
+  flex: 1;
+  margin-left: 10px;
+  word-break: break-word;
+}
+
+.barcode-value {
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  color: #001a4d;
+  background: #FFD700;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+@media (max-width: 600px) {
+  .scanner-card {
+    padding: 20px;
+  }
+
+  .scanner-card h2 {
+    font-size: 22px;
+  }
+
+  .manual-input {
+    flex-direction: column;
+  }
+
+  .search-btn {
+    width: 100%;
+  }
+
+  .detail-item {
+    flex-direction: column;
+  }
+
+  .detail-item .value {
+    text-align: left;
+    margin-left: 0;
+    margin-top: 5px;
+  }
+}
