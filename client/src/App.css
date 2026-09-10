@@ -1,0 +1,48 @@
+/*
+ * Patent Pending: Barcode Scanner with Intelligent Product Recognition
+ * © 2026 Dmwambu. All rights reserved.
+ * Unauthorized use and/or duplication of this material without 
+ * express and written permission is strictly prohibited.
+ */
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f5f5f5;
+}
+
+.app-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 2.5em;
+  font-weight: 700;
+}
+
+.app-header p {
+  margin: 10px 0 0 0;
+  font-size: 1.1em;
+  opacity: 0.95;
+}
+
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .app-header h1 {
+    font-size: 1.8em;
+  }
+  
+  .app-header p {
+    font-size: 1em;
+  }
+}

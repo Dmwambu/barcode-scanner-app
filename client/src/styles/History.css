@@ -1,0 +1,79 @@
+/*
+ * Patent Pending: Barcode Scanner with Intelligent Product Recognition
+ * © 2026 Dmwambu. All rights reserved.
+ * Unauthorized use and/or duplication of this material without 
+ * express and written permission is strictly prohibited.
+ */
+
+.history-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.history-header h2 {
+  color: #333;
+}
+
+.clear-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.clear-btn:hover {
+  background: #c82333;
+}
+
+.empty-message {
+  text-align: center;
+  color: #999;
+  padding: 40px 20px;
+  font-size: 18px;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.history-item {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.history-item:hover {
+  background: #f9f9f9;
+  border-color: #007bff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.history-item .barcode {
+  font-weight: bold;
+  font-family: monospace;
+  color: #333;
+}
+
+.history-item .timestamp {
+  color: #999;
+  font-size: 14px;
+}
