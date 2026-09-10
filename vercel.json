@@ -1,0 +1,8 @@
+{
+  "buildCommand": "cd client && npm run build",
+  "installCommand": "npm install && cd client && npm install",
+  "outputDirectory": "client/build",
+  "env": {
+    "REACT_APP_API_URL": "@react_app_api_url"
+  }
+}
