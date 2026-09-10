@@ -9,16 +9,23 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, #001a4d 0%, #003399 100%);
+  background: linear-gradient(135deg, #6B2D8C 0%, #8B3A9E 100%);
 }
 
 .app-header {
-  background: linear-gradient(135deg, #FFD700 0%, #FFC700 100%);
-  color: #001a4d;
+  background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
+  color: white;
   padding: 40px 20px;
   text-align: center;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  border-bottom: 3px solid #001a4d;
+  border-bottom: 3px solid #6B2D8C;
+}
+
+.app-header-logo {
+  width: 100px;
+  height: auto;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .app-header h1 {
@@ -32,7 +39,7 @@
 .app-header p {
   margin: 10px 0 0 0;
   font-size: 1.1em;
-  opacity: 0.9;
+  opacity: 0.95;
   font-weight: 500;
 }
 
@@ -48,5 +55,9 @@ main {
   
   .app-header p {
     font-size: 1em;
+  }
+
+  .app-header-logo {
+    width: 80px;
   }
 }
