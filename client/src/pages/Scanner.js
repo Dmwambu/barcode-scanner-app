@@ -17,8 +17,24 @@ const Scanner = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [product, setProduct] = useState(null);
+  const [uploadedImages, setUploadedImages] = useState([]);
+  const [activeTab, setActiveTab] = useState('details');
   const fileInputRef = useRef(null);
+  const imageUploadRef = useRef(null);
   const navigate = useNavigate();
+
+  // Sample data for demo - KenGen Barcode 045544
+  const sampleProducts = {
+    '045544': {
+      barcodeNo: '045544',
+      brandModel: 'Lenovo ThinkBook 14 G2 ITL',
+      description: 'Laptop',
+      serialNumber: 'MP25BENT',
+      category: 'Electronics',
+      quantity: '1 Unit',
+      manufacturingCountry: 'China'
+    }
+  };
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
@@ -33,7 +49,7 @@ const Scanner = () => {
         const imageData = event.target.result;
         
         // Simulate barcode detection for demo
-        const detectedBarcode = '045544'; // KenGen barcode from your image
+        const detectedBarcode = '045544';
         setBarcode(detectedBarcode);
         
         // Fetch product details
@@ -46,6 +62,27 @@ const Scanner = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleProductImageUpload = (e) => {
+    const files = e.target.files;
+    if (!files) return;
+
+    for (let i = 0; i < files.length; i++) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setUploadedImages(prev => [...prev, {
+          src: event.target.result,
+          name: files[i].name,
+          uploadedAt: new Date().toLocaleString()
+        }]);
+      };
+      reader.readAsDataURL(files[i]);
+    }
+  };
+
+  const deleteImage = (index) => {
+    setUploadedImages(prev => prev.filter((_, i) => i !== index));
   };
 
   const handleManualInput = async (e) => {
@@ -61,25 +98,44 @@ const Scanner = () => {
     setLoading(true);
     setError('');
     try {
-      // Try to fetch from Open Food Facts API
-      const response = await axios.get(
-        `https://world.openfoodfacts.org/api/v0/product/${barcodeValue}.json`
-      );
-
-      if (response.data && response.data.product) {
+      // Check if barcode exists in sample data
+      if (sampleProducts[barcodeValue]) {
+        const sampleData = sampleProducts[barcodeValue];
         setProduct({
-          name: response.data.product.product_name || 'Unknown Product',
-          brand: response.data.product.brands || 'Unknown Brand',
-          description: response.data.product.generic_name || 'No description',
-          image: response.data.product.image_front_url || '/placeholder.jpg',
-          ingredients: response.data.product.ingredients_text || 'Not available',
-          barcode: barcodeValue
+          barcodeNo: sampleData.barcodeNo,
+          brandModel: sampleData.brandModel,
+          description: sampleData.description,
+          serialNumber: sampleData.serialNumber,
+          category: sampleData.category,
+          quantity: sampleData.quantity,
+          manufacturingCountry: sampleData.manufacturingCountry
         });
+        setActiveTab('details');
+        setUploadedImages([]); // Reset images for new product
       } else {
-        setError('Product not found in database');
+        // Try to fetch from Open Food Facts API as fallback
+        const response = await axios.get(
+          `https://world.openfoodfacts.org/api/v0/product/${barcodeValue}.json`
+        );
+
+        if (response.data && response.data.product) {
+          setProduct({
+            barcodeNo: barcodeValue,
+            brandModel: response.data.product.brands || 'Unknown Brand',
+            description: response.data.product.generic_name || 'No description',
+            serialNumber: response.data.product.code || 'N/A',
+            category: response.data.product.categories || 'Not specified',
+            quantity: response.data.product.quantity || 'N/A',
+            manufacturingCountry: response.data.product.manufacturing_countries || 'Not specified'
+          });
+          setActiveTab('details');
+          setUploadedImages([]);
+        } else {
+          setError('Product not found in database. Try barcode: 045544');
+        }
       }
     } catch (err) {
-      setError('Could not fetch product information');
+      setError('Could not fetch product information. Try barcode: 045544');
       console.error(err);
     } finally {
       setLoading(false);
@@ -136,32 +192,110 @@ const Scanner = () => {
             <div className="result-header">
               <h3>✅ Product Found!</h3>
             </div>
-            {product.image && (
-              <img src={product.image} alt={product.name} className="product-img" />
-            )}
-            <div className="product-details">
-              <h4>{product.name}</h4>
-              <div className="detail-item">
-                <span className="label">Brand:</span>
-                <span className="value">{product.brand}</span>
-              </div>
-              <div className="detail-item">
-                <span className="label">Barcode:</span>
-                <span className="value barcode-value">{product.barcode}</span>
-              </div>
-              {product.description && (
+
+            {/* Tabs */}
+            <div className="tabs-container">
+              <button 
+                className={`tab-btn ${activeTab === 'details' ? 'active' : ''}`}
+                onClick={() => setActiveTab('details')}
+              >
+                📋 Details
+              </button>
+              <button 
+                className={`tab-btn ${activeTab === 'images' ? 'active' : ''}`}
+                onClick={() => setActiveTab('images')}
+              >
+                🖼️ Images ({uploadedImages.length})
+              </button>
+            </div>
+
+            {/* Details Tab */}
+            {activeTab === 'details' && (
+              <div className="product-details">
+                <div className="detail-item">
+                  <span className="label">KenGen Barcode No:</span>
+                  <span className="value barcode-value">{product.barcodeNo}</span>
+                </div>
+
+                <div className="detail-item">
+                  <span className="label">Brand & Model:</span>
+                  <span className="value">{product.brandModel}</span>
+                </div>
+
                 <div className="detail-item">
                   <span className="label">Description:</span>
                   <span className="value">{product.description}</span>
                 </div>
-              )}
-              {product.ingredients && (
+
                 <div className="detail-item">
-                  <span className="label">Ingredients:</span>
-                  <span className="value">{product.ingredients}</span>
+                  <span className="label">Serial Number:</span>
+                  <span className="value serial-value">{product.serialNumber}</span>
                 </div>
-              )}
-            </div>
+
+                <div className="detail-item">
+                  <span className="label">Category:</span>
+                  <span className="value">{product.category}</span>
+                </div>
+
+                <div className="detail-item">
+                  <span className="label">Quantity:</span>
+                  <span className="value">{product.quantity}</span>
+                </div>
+
+                <div className="detail-item">
+                  <span className="label">Country of Origin:</span>
+                  <span className="value">{product.manufacturingCountry}</span>
+                </div>
+              </div>
+            )}
+
+            {/* Images Tab */}
+            {activeTab === 'images' && (
+              <div className="images-tab">
+                <div className="upload-images-section">
+                  <button 
+                    className="upload-images-btn"
+                    onClick={() => imageUploadRef.current?.click()}
+                  >
+                    ➕ Add Product Images
+                  </button>
+                  <input
+                    ref={imageUploadRef}
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={handleProductImageUpload}
+                    style={{ display: 'none' }}
+                  />
+                  <p className="upload-hint">You can upload multiple images of the product</p>
+                </div>
+
+                {uploadedImages.length > 0 ? (
+                  <div className="uploaded-images-grid">
+                    {uploadedImages.map((img, index) => (
+                      <div key={index} className="image-card">
+                        <img src={img.src} alt={`Product ${index + 1}`} className="uploaded-img" />
+                        <div className="image-info">
+                          <p className="image-name">{img.name}</p>
+                          <p className="image-date">{img.uploadedAt}</p>
+                          <button 
+                            className="delete-btn"
+                            onClick={() => deleteImage(index)}
+                          >
+                            🗑️ Delete
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="no-images">
+                    <p>📷 No images uploaded yet</p>
+                    <p>Click the button above to add product images</p>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         )}
       </div>
