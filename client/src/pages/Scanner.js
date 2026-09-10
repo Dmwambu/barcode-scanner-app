@@ -89,7 +89,11 @@ const Scanner = () => {
   return (
     <div className="scanner-container">
       <div className="scanner-card">
-        <h2>🔍 Scan Barcode</h2>
+        <div className="scanner-header">
+          <div className="kengen-logo">⚡</div>
+          <h2>KenGen Barcode Scanner</h2>
+          <p className="tagline">Scan to Identify & Verify</p>
+        </div>
         
         {/* Upload Image */}
         <div className="upload-section">
@@ -129,15 +133,35 @@ const Scanner = () => {
 
         {product && (
           <div className="product-result">
-            <h3>✅ Product Found!</h3>
+            <div className="result-header">
+              <h3>✅ Product Found!</h3>
+            </div>
             {product.image && (
               <img src={product.image} alt={product.name} className="product-img" />
             )}
-            <h4>{product.name}</h4>
-            <p><strong>Brand:</strong> {product.brand}</p>
-            <p><strong>Barcode:</strong> {product.barcode}</p>
-            {product.description && <p><strong>Description:</strong> {product.description}</p>}
-            {product.ingredients && <p><strong>Ingredients:</strong> {product.ingredients}</p>}
+            <div className="product-details">
+              <h4>{product.name}</h4>
+              <div className="detail-item">
+                <span className="label">Brand:</span>
+                <span className="value">{product.brand}</span>
+              </div>
+              <div className="detail-item">
+                <span className="label">Barcode:</span>
+                <span className="value barcode-value">{product.barcode}</span>
+              </div>
+              {product.description && (
+                <div className="detail-item">
+                  <span className="label">Description:</span>
+                  <span className="value">{product.description}</span>
+                </div>
+              )}
+              {product.ingredients && (
+                <div className="detail-item">
+                  <span className="label">Ingredients:</span>
+                  <span className="value">{product.ingredients}</span>
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>
