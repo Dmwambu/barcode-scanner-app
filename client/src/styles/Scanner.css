@@ -11,7 +11,7 @@
   align-items: center;
   min-height: 70vh;
   padding: 20px;
-  background: linear-gradient(135deg, #001a4d 0%, #003399 100%);
+  background: linear-gradient(135deg, #6B2D8C 0%, #8B3A9E 100%);
 }
 
 .scanner-card {
@@ -21,31 +21,37 @@
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
   max-width: 600px;
   width: 100%;
-  border-top: 5px solid #FFD700;
+  border-top: 5px solid #FF6B35;
 }
 
 .scanner-header {
   text-align: center;
   margin-bottom: 35px;
-  border-bottom: 2px solid #FFD700;
+  border-bottom: 2px solid #FF6B35;
   padding-bottom: 20px;
 }
 
 .kengen-logo {
   font-size: 48px;
   margin-bottom: 15px;
-  color: #FFD700;
+  color: #FF6B35;
+}
+
+.kengen-logo img {
+  width: 80px;
+  height: auto;
+  margin-bottom: 15px;
 }
 
 .scanner-card h2 {
-  color: #001a4d;
+  color: #6B2D8C;
   margin: 0 0 10px 0;
   font-size: 28px;
   font-weight: 700;
 }
 
 .tagline {
-  color: #003399;
+  color: #FF6B35;
   margin: 8px 0 0 0;
   font-size: 14px;
   font-weight: 500;
@@ -59,8 +65,8 @@
 .upload-btn {
   width: 100%;
   padding: 15px;
-  background: linear-gradient(135deg, #FFD700 0%, #FFC700 100%);
-  color: #001a4d;
+  background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
+  color: white;
   border: none;
   border-radius: 8px;
   font-size: 16px;
@@ -69,12 +75,12 @@
   transition: all 0.3s;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
 }
 
 .upload-btn:hover:not(:disabled) {
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
 }
 
 .upload-btn:disabled {
@@ -127,15 +133,15 @@
 
 .barcode-input:focus {
   outline: none;
-  border-color: #003399;
-  box-shadow: 0 0 0 3px rgba(0, 51, 153, 0.1);
+  border-color: #6B2D8C;
+  box-shadow: 0 0 0 3px rgba(107, 45, 140, 0.1);
 }
 
 .search-btn {
   padding: 12px 30px;
-  background: linear-gradient(135deg, #003399 0%, #001a4d 100%);
-  color: #FFD700;
-  border: 2px solid #003399;
+  background: linear-gradient(135deg, #6B2D8C 0%, #5A1F78 100%);
+  color: #FF6B35;
+  border: 2px solid #6B2D8C;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 700;
@@ -146,8 +152,8 @@
 
 .search-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 51, 153, 0.4);
-  background: linear-gradient(135deg, #001a4d 0%, #000d26 100%);
+  box-shadow: 0 6px 20px rgba(107, 45, 140, 0.4);
+  background: linear-gradient(135deg, #5A1F78 0%, #4A1465 100%);
 }
 
 .search-btn:disabled {
@@ -171,12 +177,12 @@
   padding: 25px;
   background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
   border-radius: 12px;
-  border-left: 5px solid #FFD700;
-  border-top: 2px solid #003399;
+  border-left: 5px solid #FF6B35;
+  border-top: 2px solid #6B2D8C;
 }
 
 .result-header {
-  background: linear-gradient(135deg, #FFD700 0%, #FFC700 100%);
+  background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
   padding: 15px;
   border-radius: 8px;
   margin: -25px -25px 20px -25px;
@@ -184,7 +190,7 @@
 }
 
 .result-header h3 {
-  color: #001a4d;
+  color: white;
   margin: 0;
   font-size: 20px;
 }
@@ -197,7 +203,7 @@
   margin: 15px 0;
   background: white;
   padding: 10px;
-  border: 2px solid #FFD700;
+  border: 2px solid #FF6B35;
 }
 
 .product-details {
@@ -207,7 +213,7 @@
 }
 
 .product-details h4 {
-  color: #001a4d;
+  color: #6B2D8C;
   margin: 0 0 15px 0;
   font-size: 18px;
   text-transform: uppercase;
@@ -225,7 +231,7 @@
 }
 
 .detail-item .label {
-  color: #003399;
+  color: #6B2D8C;
   font-weight: 700;
   font-size: 14px;
   text-transform: uppercase;
@@ -242,8 +248,8 @@
 .barcode-value {
   font-family: 'Courier New', monospace;
   font-weight: 700;
-  color: #001a4d;
-  background: #FFD700;
+  color: white;
+  background: #FF6B35;
   padding: 5px 10px;
   border-radius: 4px;
 }
